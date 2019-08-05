@@ -75,10 +75,11 @@ async def handle_client(reader, writer):
         print('Received {} from {}'.format(message, addr))
 
         if len(message) > 0:
+            response = 'HTTP/1.0 200 OK\r\n\r\n'
 
             # load the template and return it to the client
             with open('index.html') as f:
-                response = f.read()
+                response += f.read()
 
             yield from writer.awrite(response)
 
